@@ -562,6 +562,62 @@
   .email-submit:hover { background: var(--cream); }
   .email-note { font-size: 11px; font-weight: 300; color: var(--cream-dim); opacity: 0.6; margin-top: 1rem; letter-spacing: 0.05em; }
 
+  /* ── COMMUNITY ── */
+  .community { padding: 7rem 3rem; }
+  .community-inner { max-width: 1200px; margin: 0 auto; }
+  .wall-wrap { position: relative; margin-bottom: 3rem; }
+  .wall-surface {
+    position: relative;
+    background: linear-gradient(135deg, #232320 0%, #1E1E1B 40%, #252522 100%);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 3rem 2.5rem 4rem;
+    overflow: hidden;
+    min-height: 320px;
+  }
+  .wall-lines {
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(92deg, transparent, transparent 3px, rgba(255,255,255,0.012) 3px, rgba(255,255,255,0.012) 4px), repeating-linear-gradient(178deg, transparent, transparent 8px, rgba(255,255,255,0.008) 8px, rgba(255,255,255,0.008) 9px);
+    pointer-events: none;
+  }
+  .wall-stripe {
+    position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%);
+    height: 2px;
+    background: linear-gradient(to right, transparent 0%, rgba(201,168,76,0.15) 15%, rgba(201,168,76,0.08) 50%, rgba(201,168,76,0.15) 85%, transparent 100%);
+    pointer-events: none;
+  }
+  .rivet {
+    position: absolute; width: 10px; height: 10px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #4A4A42, #1A1A18);
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+  .rivet-tl { top: 14px; left: 14px; }
+  .rivet-tr { top: 14px; right: 14px; }
+  .rivet-bl { bottom: 14px; left: 14px; }
+  .rivet-br { bottom: 14px; right: 14px; }
+  .names-field {
+    position: relative; display: flex; flex-wrap: wrap;
+    gap: 0.75rem 1.5rem; align-items: center; z-index: 2;
+  }
+  .name {
+    display: inline-block; font-family: 'League Gothic', sans-serif;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    transform: rotate(var(--r, 0deg)); transition: transform 0.2s, color 0.2s;
+    cursor: default; line-height: 1; color: var(--cream);
+  }
+  .name:hover { transform: rotate(0deg) scale(1.08); color: var(--gold) !important; }
+  .name-lg { font-size: clamp(28px, 3.5vw, 42px); }
+  .name-md { font-size: clamp(18px, 2.5vw, 28px); }
+  .name-sm { font-size: clamp(13px, 1.8vw, 18px); }
+  .name-gold { color: var(--gold); }
+  .name-dim { color: var(--cream-dim); opacity: 0.55; }
+  .wall-placeholder-note {
+    position: absolute; bottom: 8px; right: 14px;
+    font-size: 9px; letter-spacing: 0.15em;
+    color: var(--cream-dim); opacity: 0.25; font-style: italic;
+  }
+  .community-cta { display: flex; flex-direction: column; align-items: center; margin-top: 1rem; }
+
   /* ── FOOTER ── */
   footer {
     padding: 2.5rem 3rem;
@@ -927,14 +983,14 @@
     </div>
   </div>
 </section>
- 
+
 <!-- DIVIDER -->
 <div class="divider">
   <div class="divider-line"></div>
   <span class="divider-mark">The Community</span>
   <div class="divider-line"></div>
 </div>
- 
+
 <!-- COMMUNITY -->
 <section id="community" class="community">
   <div class="community-inner">
@@ -974,14 +1030,14 @@
     </div>
   </div>
 </section>
- 
+
 <!-- EMAIL CAPTURE -->
 <section id="signup">
   <div class="email-section">
     <p class="section-label reveal">Stay on the road with us</p>
     <h2 class="section-title reveal reveal-delay-1">Be in the know.</h2>
     <p class="body-text reveal reveal-delay-2">Sign up and we'll let you know the moment the Kickstarter goes live. Plus early access to campaign updates and exclusive peeks about how we're getting there.</p>
- 
+
     <!-- Replace the form below with your Kit embed code when ready -->
     <div class="reveal reveal-delay-3">
       <div class="email-form">
@@ -992,13 +1048,13 @@
     </div>
   </div>
 </section>
- 
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Nomadic Wildling Media</div>
   <div class="footer-legal">© 2025 Nomadic Wildling Media. All rights reserved. Based in Alberta, Canada.</div>
 </footer>
- 
+
 <script>
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
@@ -1007,7 +1063,7 @@
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(el => observer.observe(el));
- 
+
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const target = document.querySelector(this.getAttribute('href'));
@@ -1018,7 +1074,7 @@
       }
     });
   });
- 
+
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 60) {
