@@ -33,7 +33,6 @@
     overflow-x: hidden;
   }
 
-  /* ── NOISE TEXTURE OVERLAY ── */
   body::before {
     content: '';
     position: fixed;
@@ -100,7 +99,6 @@
       linear-gradient(105deg, rgba(74,74,30,0.4) 0%, transparent 60%);
     background-color: #2A2820;
   }
-  /* Simulated landscape using CSS gradients — replace with real img tag in production */
   .hero-img-placeholder {
     position: absolute;
     inset: 0;
@@ -109,7 +107,6 @@
       linear-gradient(180deg, #1A1A18 0%, #2A2618 25%, #3A3420 50%, #2A2618 75%, #1A1A18 100%);
     z-index: -1;
   }
-  /* Road graphic using CSS */
   .hero-road {
     position: absolute;
     bottom: 0;
@@ -248,7 +245,6 @@
     text-transform: uppercase;
   }
 
-  /* ── SECTION BASE ── */
   section { position: relative; }
 
   /* ── WHAT THIS IS ── */
@@ -288,10 +284,7 @@
     color: var(--cream);
     margin-bottom: 1.75rem;
   }
-  .section-title em {
-    font-style: normal;
-    color: var(--gold);
-  }
+  .section-title em { font-style: normal; color: var(--gold); }
   .body-text {
     font-size: 15px;
     font-weight: 300;
@@ -301,9 +294,6 @@
   .body-text + .body-text { margin-top: 1rem; }
   .body-text strong { color: var(--cream); font-weight: 500; }
 
-  .what-visual {
-    position: relative;
-  }
   .quote-block {
     border-left: 2px solid var(--gold);
     padding: 2rem 2rem 2rem 2.5rem;
@@ -325,12 +315,7 @@
     text-transform: uppercase;
     color: var(--gold-dim);
   }
-  .three-acts {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin-top: 2rem;
-  }
+  .three-acts { display: flex; flex-direction: column; gap: 0; margin-top: 2rem; }
   .act {
     display: flex;
     gap: 1.25rem;
@@ -347,7 +332,6 @@
     min-width: 64px;
     padding-top: 2px;
   }
-  .act-content {}
   .act-title {
     font-size: 13px;
     font-weight: 600;
@@ -364,10 +348,7 @@
   }
 
   /* ── WHY ── */
-  .why {
-    padding: 7rem 3rem;
-    background: var(--dark-mid);
-  }
+  .why { padding: 7rem 3rem; background: var(--dark-mid); }
   .why-inner {
     max-width: 1200px;
     margin: 0 auto;
@@ -386,44 +367,20 @@
     margin-bottom: 2rem;
   }
   .why-statement em { font-style: normal; color: var(--gold); }
-
-  .pillars {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  .pillar {
-    display: flex;
-    gap: 1.25rem;
-    align-items: flex-start;
-  }
+  .pillars { display: flex; flex-direction: column; gap: 1.5rem; }
+  .pillar { display: flex; gap: 1.25rem; align-items: flex-start; }
   .pillar-icon {
-    width: 36px;
-    height: 36px;
+    width: 36px; height: 36px;
     background: rgba(201,168,76,0.1);
     border: 1px solid rgba(201,168,76,0.25);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
   .pillar-icon svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
-  .pillar-title {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--cream);
-    margin-bottom: 0.3rem;
-  }
-  .pillar-desc {
-    font-size: 13px;
-    font-weight: 300;
-    line-height: 1.65;
-    color: var(--cream-dim);
-  }
+  .pillar-title { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream); margin-bottom: 0.3rem; }
+  .pillar-desc { font-size: 13px; font-weight: 300; line-height: 1.65; color: var(--cream-dim); }
 
-  /* ── ABOUT TYLER ── */
+  /* ── TYLER ── */
   .tyler {
     padding: 7rem 3rem;
     max-width: 1200px;
@@ -433,45 +390,23 @@
     gap: 5rem;
     align-items: center;
   }
-  .tyler-portrait {
-    position: relative;
-  }
   .portrait-frame {
     position: relative;
-    display: inline-block;
+    display: block;
     width: 100%;
   }
-  .portrait-placeholder {
+  .portrait-frame img {
     width: 100%;
     aspect-ratio: 3/4;
-    background: linear-gradient(135deg, #2A2820 0%, #3A3428 50%, #2A2820 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 0.75rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .portrait-placeholder::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(26,26,24,0.8) 0%, transparent 50%);
-  }
-  .portrait-note {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--cream-dim);
-    opacity: 0.5;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
   }
   .portrait-caption {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0; left: 0; right: 0;
     padding: 1.5rem;
+    background: linear-gradient(to top, rgba(26,26,24,0.9) 0%, transparent 100%);
     z-index: 2;
   }
   .portrait-name {
@@ -492,21 +427,14 @@
   }
   .portrait-accent {
     position: absolute;
-    top: -12px;
-    right: -12px;
-    width: 80px;
-    height: 80px;
+    top: -12px; right: -12px;
+    width: 80px; height: 80px;
     border: 1px solid rgba(201,168,76,0.3);
     z-index: -1;
   }
 
-  /* ── KICKSTARTER SECTION ── */
-  .ks {
-    padding: 7rem 3rem;
-    background: var(--dark-mid);
-    position: relative;
-    overflow: hidden;
-  }
+  /* ── KICKSTARTER ── */
+  .ks { padding: 7rem 3rem; background: var(--dark-mid); position: relative; overflow: hidden; }
   .ks::before {
     content: '';
     position: absolute;
@@ -515,21 +443,13 @@
     background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
     pointer-events: none;
   }
-  .ks-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+  .ks-inner { max-width: 1200px; margin: 0 auto; }
   .ks-header {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
     align-items: start;
     margin-bottom: 4rem;
-  }
-  .ks-goal-display {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
   }
   .goal-amount {
     font-family: 'League Gothic', sans-serif;
@@ -546,14 +466,6 @@
     color: var(--cream-dim);
     margin-bottom: 1.5rem;
   }
-  .goal-desc {
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 1.75;
-    color: var(--cream-dim);
-    max-width: 400px;
-  }
-  .goal-desc strong { color: var(--cream); font-weight: 500; }
 
   /* Tiers */
   .tiers-grid {
@@ -570,9 +482,7 @@
     position: relative;
   }
   .tier-card:hover { background: #202020; }
-  .tier-card.featured {
-    background: rgba(201,168,76,0.07);
-  }
+  .tier-card.featured { background: rgba(201,168,76,0.07); }
   .tier-card.featured::before {
     content: 'POPULAR';
     position: absolute;
@@ -602,12 +512,7 @@
     padding-bottom: 0.75rem;
     border-bottom: 1px solid rgba(201,168,76,0.15);
   }
-  .tier-perks {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+  .tier-perks { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
   .tier-perks li {
     font-size: 12px;
     font-weight: 300;
@@ -616,32 +521,15 @@
     padding-left: 1rem;
     position: relative;
   }
-  .tier-perks li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--gold-dim);
-  }
+  .tier-perks li::before { content: '—'; position: absolute; left: 0; color: var(--gold-dim); }
 
-  /* ── EMAIL CAPTURE ── */
-  .email-section {
-    padding: 6rem 3rem;
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .email-section .section-label {
-    justify-content: center;
-  }
+  /* ── EMAIL ── */
+  .email-section { padding: 6rem 3rem; max-width: 700px; margin: 0 auto; text-align: center; }
+  .email-section .section-label { justify-content: center; }
   .email-section .section-label::before { display: none; }
   .email-section .section-title { text-align: center; }
   .email-section .body-text { text-align: center; margin-bottom: 2.5rem; }
-  .email-form {
-    display: flex;
-    gap: 0;
-    max-width: 460px;
-    margin: 0 auto;
-  }
+  .email-form { display: flex; gap: 0; max-width: 460px; margin: 0 auto; }
   .email-input {
     flex: 1;
     font-family: 'Montserrat', sans-serif;
@@ -672,14 +560,7 @@
     transition: background 0.2s;
   }
   .email-submit:hover { background: var(--cream); }
-  .email-note {
-    font-size: 11px;
-    font-weight: 300;
-    color: var(--cream-dim);
-    opacity: 0.6;
-    margin-top: 1rem;
-    letter-spacing: 0.05em;
-  }
+  .email-note { font-size: 11px; font-weight: 300; color: var(--cream-dim); opacity: 0.6; margin-top: 1rem; letter-spacing: 0.05em; }
 
   /* ── FOOTER ── */
   footer {
@@ -689,20 +570,8 @@
     align-items: center;
     justify-content: space-between;
   }
-  .footer-logo {
-    font-family: 'League Gothic', sans-serif;
-    font-size: 12px;
-    letter-spacing: 0.2em;
-    color: var(--gold-dim);
-    text-transform: uppercase;
-  }
-  .footer-legal {
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    color: var(--cream-dim);
-    opacity: 0.4;
-  }
+  .footer-logo { font-family: 'League Gothic', sans-serif; font-size: 12px; letter-spacing: 0.2em; color: var(--gold-dim); text-transform: uppercase; }
+  .footer-legal { font-size: 10px; font-weight: 300; letter-spacing: 0.1em; color: var(--cream-dim); opacity: 0.4; }
 
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
@@ -713,17 +582,12 @@
     0%, 100% { opacity: 0.4; transform: scaleY(1); }
     50% { opacity: 1; transform: scaleY(1.3); }
   }
-
-  /* Scroll reveal */
   .reveal {
     opacity: 0;
     transform: translateY(28px);
     transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1);
   }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
   .reveal-delay-1 { transition-delay: 0.1s; }
   .reveal-delay-2 { transition-delay: 0.2s; }
   .reveal-delay-3 { transition-delay: 0.3s; }
@@ -756,7 +620,7 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-  <img src="NWM.png" alt="Nomadic Wildling Media" style="height:40px; width:auto; display:block;">
+    <img src="NWM.png" alt="Nomadic Wildling Media" style="height:40px; width:auto; display:block;">
   </a>
   <a href="#kickstarter" class="nav-cta">The Journey</a>
 </nav>
@@ -800,8 +664,7 @@
       <p class="section-label">What this is</p>
       <h2 class="section-title">Questions lead to <em>understanding.</em></h2>
       <p class="body-text">
-        <strong>Voices of Resilience</strong> is a documentary road series where each episode begins with a central question that challenges biases and perspectives. Travelling across Indigenous communities across Treaties 6, 7 & 8, we meet Elders, Knowledge Keepers, and community voices whose perspectives reshape Tyler’s understanding of resilience in a rapidly changing world.
-
+        <strong>Voices of Resilience</strong> is a documentary road series where each episode begins with a central question that challenges biases and perspectives. Travelling across Indigenous communities across Treaties 6, 7 & 8, we meet Elders, Knowledge Keepers, and community voices whose perspectives reshape Tyler's understanding of resilience in a rapidly changing world.
       </p>
       <p class="body-text" style="margin-top:1rem">
         The series is about curiosity, connection, and the adaptation of traditional Indigenous culture in an ever-changing world. It is built around universal questions and human-centred storytelling — a format designed to travel far beyond Alberta.
@@ -837,7 +700,7 @@
         <div class="quote-text">"'cause I know the power of the question."</div>
         <div class="quote-attr">— Rage Against the Machine</div>
       </div>
-      <div style="margin-top: 2rem; padding: 1.5rem; border: 1px solid rgba(201,168,76,0.12);">
+      <div style="margin-top:2rem; padding:1.5rem; border:1px solid rgba(201,168,76,0.12);">
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
           <div>
             <div style="font-family:'League Gothic',sans-serif; font-size:36px; color:var(--gold); line-height:1;">19–22</div>
@@ -878,7 +741,7 @@
         Audiences today are hungry for authenticity and adventure. They want real people asking meaningful questions in a time of filters and performances. They're drawn to diverse cultural stories, nomadic storytelling (VanLife!), and exploration of new lands and perspectives.
       </p>
       <p class="body-text" style="margin-top:1rem">
-        <strong>Voices of Resilience sits at the crossroads of it all.</strong> This show speaks to audiences searching for<strong>identity, community, direction, and growth.</strong> It offers a journey where vulnerability is celebrated and wisdom transcends cultural biases.
+        <strong>Voices of Resilience sits at the crossroads of it all.</strong> This show speaks to audiences searching for <strong>identity, community, direction, and growth.</strong> It offers a journey where vulnerability is celebrated and wisdom transcends cultural biases.
       </p>
     </div>
 
@@ -928,8 +791,7 @@
   <div class="tyler">
     <div class="tyler-portrait reveal">
       <div class="portrait-frame">
-        <img src="tyler.jpg" style="width:100%; aspect-ratio:3/4; object-fit:cover; object-position:center top; display:block;" alt="Tyler McKinney">
-        </div>
+        <img src="tyler.jpg" alt="Tyler McKinney">
         <div class="portrait-caption">
           <div class="portrait-name">Tyler McKinney</div>
           <div class="portrait-role">Host · Co-Director · Creator</div>
@@ -968,7 +830,7 @@
         <p class="section-label">How we're doing it</p>
         <h2 class="section-title">Help us <em>hit the road.</em></h2>
         <p class="body-text" style="margin-bottom:1.5rem">
-          Season 3 of Voices of Resilience is going nomadic. <strong>Fully on the road.</strong> To do that, we need a vehicle! A mobile studio and home base that goes where the stories are.
+          Season 3 of Voices of Resilience is going nomadic. <strong>Fully on the road.</strong> To do that, we need a vehicle — a mobile studio and home base that goes where the stories are.
         </p>
         <p class="body-text">
           We're raising <strong>$5,000 CAD</strong> on Kickstarter to fund the vehicle that makes this season possible. Every dollar goes directly toward getting the team on the road, capturing stories that deserve to be told.
@@ -977,10 +839,8 @@
         <p class="email-note" style="text-align:left; margin-top:0.75rem;">Kickstarter launching soon — sign up below to be first to know.</p>
       </div>
       <div class="reveal reveal-delay-2">
-        <div class="ks-goal-display">
-          <div class="goal-amount">$5,000</div>
-          <div class="goal-label">CAD — Kickstarter goal</div>
-        </div>
+        <div class="goal-amount">$5,000</div>
+        <div class="goal-label">CAD — Kickstarter goal</div>
         <div style="display:flex; flex-direction:column; gap:0.6rem; margin-top:1rem;">
           <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:300; color:var(--cream-dim); padding-bottom:0.5rem; border-bottom:1px solid rgba(201,168,76,0.1);">
             <span>Campaign length</span><span style="color:var(--cream)">30 days</span>
@@ -1004,45 +864,45 @@
       <div class="tiers-grid">
         <div class="tier-card">
           <div class="tier-price">$10</div>
-          <div class="tier-name">Tier 1</div>
+          <div class="tier-name">Spark</div>
           <ul class="tier-perks">
-            <li>Digital thank-you card</li>
-            <li>Your name below in our Thank-You section</li>
+            <li>Digital thank-you card from Tyler</li>
+            <li>Your name in our Thank-You section</li>
           </ul>
         </div>
         <div class="tier-card">
           <div class="tier-price">$25</div>
-          <div class="tier-name">Tier 2</div>
+          <div class="tier-name">Ember</div>
           <ul class="tier-perks">
-            <li>Everything in Tier 1</li>
+            <li>Everything in Spark</li>
             <li>Exclusive BTS production updates</li>
             <li>Name in show credits</li>
           </ul>
         </div>
         <div class="tier-card featured">
           <div class="tier-price">$50</div>
-          <div class="tier-name">Tier 3</div>
+          <div class="tier-name">Trailhead</div>
           <ul class="tier-perks">
-            <li>Everything in Tier 2</li>
+            <li>Everything in Ember</li>
             <li>VoR sticker pack</li>
-            <li>Access to VoR Photo Journal</li>
+            <li>Early episode access (48 hrs before public)</li>
           </ul>
         </div>
         <div class="tier-card">
           <div class="tier-price">$100</div>
-          <div class="tier-name">Tier 4r</div>
+          <div class="tier-name">Firetender</div>
           <ul class="tier-perks">
-            <li>Everything in Tier 3</li>
+            <li>Everything in Trailhead</li>
             <li>Signed photo print from set</li>
-            <li>Crew Hoodie</li>
-            <li>Name in Vehicle</li>
+            <li>Crew hoodie</li>
+            <li>Your name on the vehicle</li>
           </ul>
         </div>
         <div class="tier-card">
           <div class="tier-price">$250</div>
-          <div class="tier-name">Tier 5</div>
+          <div class="tier-name">Nomad</div>
           <ul class="tier-perks">
-            <li>Everything in Tier 4</li>
+            <li>Everything in Firetender</li>
             <li>YouTube BTS episode shoutout</li>
             <li>Producer credit</li>
             <li>Invitation to exclusive community screening</li>
@@ -1050,12 +910,12 @@
         </div>
         <div class="tier-card">
           <div class="tier-price">$500</div>
-          <div class="tier-name">Tier 6</div>
+          <div class="tier-name">The Fire We Tend</div>
           <ul class="tier-perks">
-            <li>Everything in Tier 5</li>
-            <li>Limited Edition VoR Patch</li>
-            <li>Comstom video message from Tyler & Crew</li>
-            <li>Invitation to Red Carpet priemere</li>
+            <li>Everything in Nomad</li>
+            <li>Limited edition VoR patch</li>
+            <li>Custom video message from Tyler & crew</li>
+            <li>Invitation to red carpet premiere</li>
           </ul>
         </div>
       </div>
@@ -1070,14 +930,13 @@
     <h2 class="section-title reveal reveal-delay-1">Be in the know.</h2>
     <p class="body-text reveal reveal-delay-2">Sign up and we'll let you know the moment the Kickstarter goes live. Plus early access to campaign updates and exclusive peeks about how we're getting there.</p>
 
-    <!-- Kit embed placeholder -->
+    <!-- Replace the form below with your Kit embed code when ready -->
     <div class="reveal reveal-delay-3">
       <div class="email-form">
         <input type="email" class="email-input" placeholder="your@email.com" />
         <button class="email-submit">Notify me</button>
       </div>
-      <p class="email-note">No spam, that's a promise! Unsubscribe any time.</p>
-      <p class="email-note" style="margin-top:0.25rem; font-size:10px; opacity:0.4;">↑ Replace this form with your Kit embed code when ready</p>
+      <p class="email-note">No spam, that's a promise. Unsubscribe any time.</p>
     </div>
   </div>
 </section>
@@ -1089,31 +948,25 @@
 </footer>
 
 <script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(el => observer.observe(el));
 
-  // Smooth anchor scroll with offset for fixed nav
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
         e.preventDefault();
-        const offset = 80;
-        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - 80;
         window.scrollTo({ top, behavior: 'smooth' });
       }
     });
   });
 
-  // Nav background on scroll
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 60) {
