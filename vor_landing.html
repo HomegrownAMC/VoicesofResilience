@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voices of Resilience — The Road Forward</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold:       #C9A84C;
+    --gold-dim:   #8B6E2E;
+    --dark:       #1A1A18;
+    --dark-mid:   #2A2A26;
+    --olive:      #4A4A1E;
+    --olive-light:#6B6B2A;
+    --cream:      #F0EAD6;
+    --cream-dim:  #C8BFA4;
+    --teal:       #1D9E75;
+    --rust:       #8B4A2A;
+    --white:      #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--dark);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.35;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: linear-gradient(to bottom, rgba(26,26,24,0.95) 0%, rgba(26,26,24,0) 100%);
+  }
+  .nav-logo {
+    font-family: 'League Gothic', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1.2;
+  }
+  .nav-logo span { display: block; font-size: 9px; letter-spacing: 0.35em; color: var(--cream-dim); }
+  .nav-cta {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--gold);
+    border: none;
+    padding: 0.6rem 1.4rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--cream); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 0 3rem 5rem;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(26,26,24,0.3) 0%, rgba(26,26,24,0.0) 30%, rgba(26,26,24,0.0) 50%, rgba(26,26,24,0.92) 100%),
+      linear-gradient(105deg, rgba(74,74,30,0.4) 0%, transparent 60%);
+    background-color: #2A2820;
+  }
+  /* Simulated landscape using CSS gradients — replace with real img tag in production */
+  .hero-img-placeholder {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 120% 60% at 60% 40%, rgba(139,110,46,0.15) 0%, transparent 70%),
+      linear-gradient(180deg, #1A1A18 0%, #2A2618 25%, #3A3420 50%, #2A2618 75%, #1A1A18 100%);
+    z-index: -1;
+  }
+  /* Road graphic using CSS */
+  .hero-road {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 55%;
+    background: linear-gradient(to top, transparent, rgba(201,168,76,0.08));
+  }
+  .hero-road::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: -120px;
+    width: 242px;
+    height: 100%;
+    background: linear-gradient(to top,
+      rgba(26,26,24,0.0) 0%,
+      rgba(50,45,30,0.3) 40%,
+      rgba(50,45,30,0.1) 100%
+    );
+    clip-path: polygon(48% 100%, 52% 100%, 100% 0%, 0% 0%);
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+  .hero-title {
+    font-family: 'League Gothic', sans-serif;
+    font-size: clamp(72px, 11vw, 140px);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+    max-width: 900px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--gold);
+    display: block;
+  }
+  .hero-subtitle {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--cream-dim);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.7s forwards;
+  }
+  .hero-subtitle strong { color: var(--cream); font-weight: 500; }
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.9s forwards;
+  }
+  .btn-primary {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--gold);
+    border: none;
+    padding: 1rem 2.2rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--cream); transform: translateY(-2px); }
+  .btn-secondary {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(200,191,164,0.3);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--gold); border-color: var(--gold); }
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    right: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.2s forwards;
+  }
+  .hero-scroll span {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    writing-mode: vertical-rl;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s 1.5s infinite;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 3rem;
+    margin: 0;
+  }
+  .divider-line { flex: 1; height: 1px; background: rgba(201,168,76,0.2); }
+  .divider-mark {
+    font-family: 'League Gothic', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+  }
+
+  /* ── SECTION BASE ── */
+  section { position: relative; }
+
+  /* ── WHAT THIS IS ── */
+  .what {
+    padding: 7rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .section-title {
+    font-family: 'League Gothic', sans-serif;
+    font-size: clamp(42px, 5.5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 1.75rem;
+  }
+  .section-title em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  .body-text {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--cream-dim);
+  }
+  .body-text + .body-text { margin-top: 1rem; }
+  .body-text strong { color: var(--cream); font-weight: 500; }
+
+  .what-visual {
+    position: relative;
+  }
+  .quote-block {
+    border-left: 2px solid var(--gold);
+    padding: 2rem 2rem 2rem 2.5rem;
+    background: rgba(201,168,76,0.04);
+  }
+  .quote-text {
+    font-family: 'League Gothic', sans-serif;
+    font-size: clamp(28px, 3.5vw, 42px);
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+  .quote-attr {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+  }
+  .three-acts {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 2rem;
+  }
+  .act {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+  .act:last-child { border-bottom: none; }
+  .act-num {
+    font-family: 'League Gothic', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    min-width: 64px;
+    padding-top: 2px;
+  }
+  .act-content {}
+  .act-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.25rem;
+  }
+  .act-desc {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--cream-dim);
+  }
+
+  /* ── WHY ── */
+  .why {
+    padding: 7rem 3rem;
+    background: var(--dark-mid);
+  }
+  .why-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .why-statement {
+    font-family: 'League Gothic', sans-serif;
+    font-size: clamp(38px, 5vw, 64px);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 2rem;
+  }
+  .why-statement em { font-style: normal; color: var(--gold); }
+
+  .pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .pillar {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+  .pillar-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .pillar-icon svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+  .pillar-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+  .pillar-desc {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--cream-dim);
+  }
+
+  /* ── ABOUT TYLER ── */
+  .tyler {
+    padding: 7rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .tyler-portrait {
+    position: relative;
+  }
+  .portrait-frame {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  .portrait-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, #2A2820 0%, #3A3428 50%, #2A2820 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .portrait-placeholder::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,26,24,0.8) 0%, transparent 50%);
+  }
+  .portrait-note {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    opacity: 0.5;
+  }
+  .portrait-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    z-index: 2;
+  }
+  .portrait-name {
+    font-family: 'League Gothic', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cream);
+    line-height: 1;
+  }
+  .portrait-role {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 4px;
+  }
+  .portrait-accent {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 80px;
+    height: 80px;
+    border: 1px solid rgba(201,168,76,0.3);
+    z-index: -1;
+  }
+
+  /* ── KICKSTARTER SECTION ── */
+  .ks {
+    padding: 7rem 3rem;
+    background: var(--dark-mid);
+    position: relative;
+    overflow: hidden;
+  }
+  .ks::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .ks-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .ks-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-bottom: 4rem;
+  }
+  .ks-goal-display {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .goal-amount {
+    font-family: 'League Gothic', sans-serif;
+    font-size: clamp(64px, 9vw, 112px);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--gold);
+  }
+  .goal-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    margin-bottom: 1.5rem;
+  }
+  .goal-desc {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--cream-dim);
+    max-width: 400px;
+  }
+  .goal-desc strong { color: var(--cream); font-weight: 500; }
+
+  /* Tiers */
+  .tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.1);
+  }
+  .tier-card {
+    background: var(--dark);
+    padding: 1.75rem 1.5rem;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .tier-card:hover { background: #202020; }
+  .tier-card.featured {
+    background: rgba(201,168,76,0.07);
+  }
+  .tier-card.featured::before {
+    content: 'POPULAR';
+    position: absolute;
+    top: 0; right: 0;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--dark);
+    background: var(--gold);
+    padding: 3px 8px;
+  }
+  .tier-price {
+    font-family: 'League Gothic', sans-serif;
+    font-size: 42px;
+    letter-spacing: 0.02em;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .tier-name {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .tier-perks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .tier-perks li {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--cream-dim);
+    padding-left: 1rem;
+    position: relative;
+  }
+  .tier-perks li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold-dim);
+  }
+
+  /* ── EMAIL CAPTURE ── */
+  .email-section {
+    padding: 6rem 3rem;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .email-section .section-label {
+    justify-content: center;
+  }
+  .email-section .section-label::before { display: none; }
+  .email-section .section-title { text-align: center; }
+  .email-section .body-text { text-align: center; margin-bottom: 2.5rem; }
+  .email-form {
+    display: flex;
+    gap: 0;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+  .email-input {
+    flex: 1;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 0.9rem 1.25rem;
+    background: rgba(240,234,214,0.06);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-right: none;
+    color: var(--cream);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .email-input::placeholder { color: var(--cream-dim); opacity: 0.5; }
+  .email-input:focus { border-color: rgba(201,168,76,0.6); }
+  .email-submit {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dark);
+    background: var(--gold);
+    border: none;
+    padding: 0.9rem 1.5rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .email-submit:hover { background: var(--cream); }
+  .email-note {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--cream-dim);
+    opacity: 0.6;
+    margin-top: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2.5rem 3rem;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'League Gothic', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+  }
+  .footer-legal {
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--cream-dim);
+    opacity: 0.4;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.3); }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero { padding: 0 1.5rem 4rem; }
+    .what, .tyler { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+    .why-inner { grid-template-columns: 1fr; gap: 3rem; padding: 0; }
+    .why { padding: 5rem 1.5rem; }
+    .ks { padding: 5rem 1.5rem; }
+    .ks-header { grid-template-columns: 1fr; gap: 2rem; }
+    .tiers-grid { grid-template-columns: 1fr 1fr; }
+    .email-section { padding: 5rem 1.5rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 0.75rem; text-align: center; }
+    .divider { padding: 0 1.5rem; }
+  }
+  @media (max-width: 600px) {
+    .tiers-grid { grid-template-columns: 1fr; }
+    .email-form { flex-direction: column; }
+    .email-input { border-right: 1px solid rgba(201,168,76,0.25); border-bottom: none; }
+    .hero-scroll { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    Nomadic Wildling Media
+    <span>Voices of Resilience</span>
+  </a>
+  <a href="#kickstarter" class="nav-cta">Back the Journey</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-img-placeholder"></div>
+  <div class="hero-road"></div>
+
+  <p class="hero-eyebrow">Nomadic Wildling Media Presents</p>
+  <h1 class="hero-title">
+    Voices of
+    <em>Resilience</em>
+  </h1>
+  <p class="hero-subtitle">
+    <strong>Tyler McKinney has always been drawn to the horizon.</strong> A nomadic documentary series where each episode begins with a question — and the road leads to the answers.
+  </p>
+  <div class="hero-actions">
+    <a href="#kickstarter" class="btn-primary">Back the Journey</a>
+    <a href="#what" class="btn-secondary">Learn more</a>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-mark">The Road Forward</span>
+  <div class="divider-line"></div>
+</div>
+
+<!-- WHAT THIS IS -->
+<section id="what">
+  <div class="what">
+    <div class="what-left reveal">
+      <p class="section-label">What this is</p>
+      <h2 class="section-title">Questions lead to <em>people.</em></h2>
+      <p class="body-text">
+        <strong>Voices of Resilience</strong> is a documentary road series where each episode begins with a central question rooted in identity, culture, or self-determination. Travelling across communities, Tyler meets with Indigenous Elders, artists, and knowledge holders to explore the perspectives of diverse peoples.
+      </p>
+      <p class="body-text" style="margin-top:1rem">
+        The series is about curiosity, connection, and the adaptation of traditional Indigenous culture in an ever-changing world. It is built around universal questions and human-centred storytelling — a format designed to travel far beyond Alberta.
+      </p>
+
+      <div class="three-acts" style="margin-top:2.5rem">
+        <div class="act">
+          <span class="act-num">Act I</span>
+          <div class="act-content">
+            <div class="act-title">The Question</div>
+            <div class="act-desc">Tyler introduces a personal question — why it matters to him, and what he hopes to understand.</div>
+          </div>
+        </div>
+        <div class="act">
+          <span class="act-num">Act II</span>
+          <div class="act-content">
+            <div class="act-title">The Road</div>
+            <div class="act-desc">Travel, community, conversations with Knowledge Keepers and Elders. Multiple perspectives shape the blueprint to an answer.</div>
+          </div>
+        </div>
+        <div class="act">
+          <span class="act-num">Act III</span>
+          <div class="act-content">
+            <div class="act-title">The Reflection</div>
+            <div class="act-desc">Tyler processes what he has learned. Honest, not manufactured. The next question begins to form on the horizon.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="what-visual reveal reveal-delay-2">
+      <div class="quote-block">
+        <div class="quote-text">"'cause I know the power of the question."</div>
+        <div class="quote-attr">— Rage Against the Machine</div>
+      </div>
+      <div style="margin-top: 2rem; padding: 1.5rem; border: 1px solid rgba(201,168,76,0.12);">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+          <div>
+            <div style="font-family:'League Gothic',sans-serif; font-size:36px; color:var(--gold); line-height:1;">19–22</div>
+            <div style="font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--cream-dim); margin-top:2px;">Min per episode</div>
+          </div>
+          <div>
+            <div style="font-family:'League Gothic',sans-serif; font-size:36px; color:var(--gold); line-height:1;">12</div>
+            <div style="font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--cream-dim); margin-top:2px;">Episodes per season</div>
+          </div>
+          <div>
+            <div style="font-family:'League Gothic',sans-serif; font-size:36px; color:var(--gold); line-height:1;">2+</div>
+            <div style="font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--cream-dim); margin-top:2px;">Seasons completed</div>
+          </div>
+          <div>
+            <div style="font-family:'League Gothic',sans-serif; font-size:36px; color:var(--gold); line-height:1;">19</div>
+            <div style="font-size:10px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:var(--cream-dim); margin-top:2px;">Voices documented</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-mark">The Why</span>
+  <div class="divider-line"></div>
+</div>
+
+<!-- WHY -->
+<section id="why" class="why">
+  <div class="why-inner">
+    <div class="reveal">
+      <p class="section-label">Why we're doing this</p>
+      <h2 class="why-statement">Stories live on the <em>land.</em> We're going to meet them there.</h2>
+      <p class="body-text" style="margin-top:1.5rem">
+        Audiences today are hungry for authenticity and adventure. They want real people asking consequential questions in a time of filters and facades. They're drawn to diverse cultural stories, nomadic storytelling, exploration of lands and perspectives.
+      </p>
+      <p class="body-text" style="margin-top:1rem">
+        <strong>Voices of Resilience sits at the crossroads of it all.</strong> This show speaks to audiences searching for identity, community, direction, and growth. It offers a journey where vulnerability is celebrated and wisdom is shared across cultural perspectives.
+      </p>
+    </div>
+
+    <div class="pillars reveal reveal-delay-2">
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <div class="pillar-title">Story sovereignty</div>
+          <div class="pillar-desc">Communities define themselves. Participants are collaborators, not subjects. Ongoing consent. Uncut recordings returned.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
+        </div>
+        <div>
+          <div class="pillar-title">Relationship first</div>
+          <div class="pillar-desc">Every story begins long before a camera is introduced. Elders and Knowledge Keepers guide the process from day one.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div>
+          <div class="pillar-title">Non-extractive</div>
+          <div class="pillar-desc">VoR is built in direct opposition to transactional documentary practices. Community is not a backdrop. Culture is not a checkbox.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="pillar-title">Built to travel</div>
+          <div class="pillar-desc">Central Alberta is the starting point. Treaties 6, 7, and 8 are next. Then all of Canada. Then the world.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT TYLER -->
+<section id="tyler">
+  <div class="tyler">
+    <div class="tyler-portrait reveal">
+      <div class="portrait-frame">
+        <div class="portrait-placeholder">
+          <span class="portrait-note">↑ Replace with Tyler's photo</span>
+        </div>
+        <div class="portrait-caption">
+          <div class="portrait-name">Tyler McKinney</div>
+          <div class="portrait-role">Host · Co-Director · Creator</div>
+        </div>
+        <div class="portrait-accent"></div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <p class="section-label">Who's behind this</p>
+      <h2 class="section-title">A learner willing to grow <em>out loud.</em></h2>
+      <p class="body-text">
+        Tyler McKinney is Cree, Métis, Vietnamese, and Chinese. He is also Two-Spirit. Culture was never passed down to him — and Voices of Resilience began as a direct response to that journey. A space to hold questions he didn't grow up with answers to.
+      </p>
+      <p class="body-text" style="margin-top:1rem">
+        With over a decade of photography and videography experience, two funded seasons through TELUS STORYHIVE, and three years facilitating the <strong>I Am a Kind Man</strong> initiative with Indigenous men and youth, Tyler brings something rare to this work: he is not an expert. He is a learner. And he shows up that way, every time.
+      </p>
+      <p class="body-text" style="margin-top:1rem">
+        Produced by <strong>Guillermo Barraza</strong> through Nomadic Wildling Media, with guidance from Elders and Knowledge Keepers across Treaties 6, 7, and 8 — including a blessing from Chief Clarence Wolf Leg of the Blackfoot Nation.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-mark">The Ask</span>
+  <div class="divider-line"></div>
+</div>
+
+<!-- KICKSTARTER -->
+<section id="kickstarter" class="ks">
+  <div class="ks-inner">
+    <div class="ks-header">
+      <div class="reveal">
+        <p class="section-label">How we're doing it</p>
+        <h2 class="section-title">Help us <em>hit the road.</em></h2>
+        <p class="body-text" style="margin-bottom:1.5rem">
+          Season 3 of Voices of Resilience is going nomadic. <strong>Fully on the land. Fully on the road.</strong> To do that, we need a vehicle — a mobile studio and home base that goes wherever the stories are.
+        </p>
+        <p class="body-text">
+          We're raising <strong>$5,000 CAD</strong> on Kickstarter to fund the vehicle that makes this season possible. Every dollar goes directly toward getting the team on the road, into communities, and capturing stories that deserve to be told.
+        </p>
+        <a href="#" class="btn-primary" style="margin-top:2rem; display:inline-block;">Back us on Kickstarter ↗</a>
+        <p class="email-note" style="text-align:left; margin-top:0.75rem;">Kickstarter launching soon — sign up below to be first to know.</p>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="ks-goal-display">
+          <div class="goal-amount">$5,000</div>
+          <div class="goal-label">CAD — Kickstarter goal</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.6rem; margin-top:1rem;">
+          <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:300; color:var(--cream-dim); padding-bottom:0.5rem; border-bottom:1px solid rgba(201,168,76,0.1);">
+            <span>Campaign length</span><span style="color:var(--cream)">30 days</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:300; color:var(--cream-dim); padding-bottom:0.5rem; border-bottom:1px solid rgba(201,168,76,0.1);">
+            <span>Combined audience</span><span style="color:var(--cream)">~2,768</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:300; color:var(--cream-dim); padding-bottom:0.5rem; border-bottom:1px solid rgba(201,168,76,0.1);">
+            <span>Episodes funded</span><span style="color:var(--cream)">4 pilot episodes</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:300; color:var(--cream-dim);">
+            <span>Target production start</span><span style="color:var(--cream)">June 2027</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIERS -->
+    <div class="reveal">
+      <p class="section-label" style="margin-bottom:1.5rem">Choose your tier</p>
+      <div class="tiers-grid">
+        <div class="tier-card">
+          <div class="tier-price">$10</div>
+          <div class="tier-name">Spark</div>
+          <ul class="tier-perks">
+            <li>Name in end credits</li>
+            <li>Digital thank-you from Tyler</li>
+          </ul>
+        </div>
+        <div class="tier-card">
+          <div class="tier-price">$25</div>
+          <div class="tier-name">Ember</div>
+          <ul class="tier-perks">
+            <li>Everything in Spark</li>
+            <li>Exclusive BTS production updates</li>
+          </ul>
+        </div>
+        <div class="tier-card featured">
+          <div class="tier-price">$50</div>
+          <div class="tier-name">Trailhead</div>
+          <ul class="tier-perks">
+            <li>Everything in Ember</li>
+            <li>VoR sticker pack</li>
+            <li>Early episode access (48 hrs)</li>
+          </ul>
+        </div>
+        <div class="tier-card">
+          <div class="tier-price">$100</div>
+          <div class="tier-name">Firetender</div>
+          <ul class="tier-perks">
+            <li>Everything in Trailhead</li>
+            <li>Signed Tyler photo print</li>
+            <li>Your name on the vehicle</li>
+          </ul>
+        </div>
+        <div class="tier-card">
+          <div class="tier-price">$250</div>
+          <div class="tier-name">Nomad</div>
+          <ul class="tier-perks">
+            <li>Everything in Firetender</li>
+            <li>30-min conversation with Tyler</li>
+            <li>Producer credit on all 4 episodes</li>
+          </ul>
+        </div>
+        <div class="tier-card">
+          <div class="tier-price">$500</div>
+          <div class="tier-name">The Fire We Tend</div>
+          <ul class="tier-perks">
+            <li>Everything in Nomad</li>
+            <li>Custom video message from Tyler</li>
+            <li>Premiere event invitation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL CAPTURE -->
+<section id="signup">
+  <div class="email-section">
+    <p class="section-label reveal">Stay on the road with us</p>
+    <h2 class="section-title reveal reveal-delay-1">Be first to know when we launch.</h2>
+    <p class="body-text reveal reveal-delay-2">Sign up and we'll let you know the moment the Kickstarter goes live — plus early access to campaign updates, behind-the-scenes content, and the story of how we're getting there.</p>
+
+    <!-- Kit embed placeholder -->
+    <div class="reveal reveal-delay-3">
+      <div class="email-form">
+        <input type="email" class="email-input" placeholder="your@email.com" />
+        <button class="email-submit">Notify me</button>
+      </div>
+      <p class="email-note">No spam. Just the road ahead. Unsubscribe any time.</p>
+      <p class="email-note" style="margin-top:0.25rem; font-size:10px; opacity:0.4;">↑ Replace this form with your Kit embed code when ready</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Nomadic Wildling Media</div>
+  <div class="footer-legal">© 2025 Nomadic Wildling Media. All rights reserved. Based in Alberta, Canada.</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth anchor scroll with offset for fixed nav
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 80;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Nav background on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav.style.background = 'rgba(26,26,24,0.97)';
+      nav.style.backdropFilter = 'blur(8px)';
+    } else {
+      nav.style.background = '';
+      nav.style.backdropFilter = '';
+    }
+  });
+</script>
+</body>
+</html>
